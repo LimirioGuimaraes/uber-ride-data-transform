@@ -12,36 +12,5 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  etl:
-    build: .
-    container_name: etl_runner
-    depends_on:
-      - postgres
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: postgres
-    volumes:
-      - ./silver:/app
-      - ./raw:/raw
-    command: >
-      jupyter nbconvert
-      --to notebook
-      --execute etl_pipeline.ipynb
-      --inplace
-      --allow-errors
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "8080:80"
-    depends_on:
-      - postgres
-
 volumes:
   postgres_data:
