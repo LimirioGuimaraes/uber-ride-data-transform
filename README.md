@@ -27,3 +27,10 @@ Para se conectar com o banco com o page admin. As credenciais são:
 | **Database**  | `postgres` |
 
 Após isso rode o script `transformer\etl_raw_to_silver.ipynb`, para popular o banco com os dados já tratados.
+
+# DW
+
+Para rodar o script DDL:
+```bash
+cat .\data_layer\gold\DDL.sql | docker exec -i postgres psql -U admin -d postgres
+```
