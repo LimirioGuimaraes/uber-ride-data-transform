@@ -50,3 +50,29 @@ GROUP BY
 ORDER BY
     f.cancelled_by,
     total_cancelamentos DESC; 
+
+-- Avaliações médias por tipo de veículo
+
+SELECT
+    v.vehicle_type,
+    ROUND(AVG(f.driver_rating)::numeric, 2) AS avg_driver_rating,
+    ROUND(AVG(f.customer_rating)::numeric, 2) AS avg_customer_rating,
+    COUNT(*) AS total_rides
+FROM dw.fat_rid f
+JOIN dw.dim_veh v ON f.srk_veh = v.srk_veh
+GROUP BY v.vehicle_type
+ORDER BY avg_driver_rating DESC;
+
+-- Top 5 clientes por valor total de booking
+
+SELECT
+    c.customer_id,
+    SUM(COALESCE(f.booking_value, 0)) AS total_booking_value,
+    COUNT(f.srk_rid) AS total_rides,
+    ROUND(AVG(f.customer_rating)::numeric, 2) AS avg_customer_rating
+FROM dw.fat_rid f
+JOIN dw.dim_cus c ON f.srk_cus = c.srk_cus
+GROUP BY c.customer_id
+ORDER BY total_booking_value DESC
+LIMIT 5;
+
