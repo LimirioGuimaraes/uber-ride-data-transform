@@ -1,5 +1,7 @@
 # SBD2---Grupo-16
 
+[Acesse o BI aqui.](https://app.powerbi.com/view?r=eyJrIjoiNzJkN2Y0MTMtOWI4Ny00MTEyLTk1MjgtZTE3NWUwZTA5MTdmIiwidCI6ImVjMzU5YmExLTYzMGItNGQyYi1iODMzLWM4ZTZkNDhmODA1OSJ9) 
+
 # Como rodar
 
 Primeiramente é necessário ter o docker instalado em sua máquina
